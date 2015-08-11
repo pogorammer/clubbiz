@@ -1,8 +1,8 @@
-## DESCRIPTION
+## Description
 
 The Club-Biz application is a small Web-app that aims to engage University students in clubs and societies. This app is developed using Ruby on Rails, Bootstrap and JQuery.
 
-## FEATURES
+## Features
 
 For University Clubs and Societies:
 1. Register using the Web-app and once registered, allow societies to administer their own society details,
