@@ -1,0 +1,23 @@
+<% provide(:title, "Student Sign In") %>
+<div id="content">
+  <div class="inner-content" id="myContent">
+    <div class="single-box">
+      <div class="project-post-content">
+        <h1>Student Sign In</h1>
+        <%= render 'shared/StudentAdmin/student_login_error' %>
+        <div class="text-fields newfont">
+          <%= form_tag (student_admin_login_path) do %>
+              <span><i class="fa fa-envelope"></i></span><%= label_tag :email, "Email" %>
+              <%= text_field_tag :email, nil, class: "form-control", type: 'email', required: '' %>
+
+              <span><i class="fa fa-lock"></i></span><%= label_tag :password, "Password" %>
+              <%= password_field_tag :password, nil, class: "form-control", required: '' %>
+              <br>
+
+              <p align="center"><%= submit_tag "Sign In", class: "btn btn-success btn-lg" %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

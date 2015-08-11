@@ -1,0 +1,84 @@
+<% provide(:title, @event.title + ' Event') %>
+<div id="content">
+  <div class="inner-content">
+    <div class="single-box">
+
+      <div class="single-box-content">
+
+        <div class="project-post-content newfont">
+
+          <h1 style="font-size: 30px; color: #d35400; font-weight: bold"><%= @event.title %></h1>
+          <h4><%= @event.datetime.to_time.strftime("%d/%m/%Y") %></h4>
+
+          <div class="flexslider">
+            <ul class="slides">
+              <li>
+                <%= image_tag @event.img1 %>
+              </li>
+              <li>
+                <%= image_tag @event.img2 %>
+              </li>
+              <li>
+                <%= image_tag @event.img3 %>
+              </li>
+            </ul>
+          </div>
+          <p><%= @event.description %></p>
+
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <div class="post-info">
+          <h1>Ticket Info</h1>
+          <%= link_to "Reserve Ticket", reserve_ticket_reserve_path + '?id=' + @event.id.to_s, class: "btn btn-success", style: 'float: right; margin-top: -50px' %>
+          <% @tickets.each do |t| %>
+              <div class="rounded-box">
+                <ul>
+
+                  <li>
+                    <span><i class="fa fa-ticket"></i></span><b><%= t.ticket_type %></b>
+                  </li>
+                  <li>
+                    <span><i class="fa fa-sort-numeric-asc"></i></span><b>Price:</b> <%= t.ticket_price %>$
+                  </li>
+                  <li>
+                    <span><i class="fa fa-calendar"></i></span><b>Avalability:</b> <%= t.start_date.to_time.strftime("%d/%m/%Y %I:%M%p") %>
+                    - <%= t.end_date.to_time.strftime("%d/%m/%Y %I:%M%p") %>
+                  </li>
+
+                </ul>
+              </div>
+              <Br>
+          <% end %>
+          <h1>Feedback</h1>
+          <% if @feedback.count > 0 %>
+              <% @feedback.each do |f| %>
+                  <% student = Student.find(f.student_id) %>
+                  <div class="rounded-box">
+                    <%= image_tag student.avatar, class: 'img-circular-vr-small' %>
+                    <span style="display: inline-block;"><b><%= "#{student.first_name} #{student.last_name}" %></b><br>
+                      <%= f.created_at.to_time.strftime("%d/%m/%Y %T") %></span>
+
+                    <p><br><%= f.post %></p>
+                  </div>
+                  <br>
+              <% end %>
+          <% else %>
+              <p>There is currently no feedback for this event.</p>
+          <% end %>
+          <br>
+          <% if @student && @student.feedbacks.where('feedbacks.event_id = ' + @event.id.to_s).count == 0 %>
+              <%= form_tag event_share_post_feedback_path do %>
+                  <textarea id="post_content" class="form-control" maxlength="250" name="post_content" rows="5" required></textarea>
+                  <input name="event_id" type="hidden" value=<%= @event.id %>/>
+                  <Br>
+
+                  <p align="center"><%= submit_tag "Post", class: "btn btn-success" %></p>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

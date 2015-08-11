@@ -1,0 +1,26 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header" style="font-family: 'Existence-Light', Arial, sans-serif;">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand">Administration</span>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav">
+        <li
+        <% if params[:action] == "validate_club" %>class="active"
+        <% end %>>
+          <a href=<%= admin_validate_club_path %>><b>Validate Clubs</b></a></li>
+        <li
+        <% if params[:action] == "post_announcements" %>class="active"
+        <% end %>>
+          <a href=<%= admin_post_announcements_path %>><b>Post Announcements</b></a></li>
+      </ul>
+     </div>
+  </div>
+</nav>

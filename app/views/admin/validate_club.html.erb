@@ -1,0 +1,24 @@
+<% provide(:title, 'Administration - Validate Clubs') %>
+<div id="content">
+  <div class="inner-content" id="myContent">
+    <div class="single-box">
+      <div class="project-post-content">
+        <%= render 'shared/Admin/admin_nav_bar' %>
+        <h1>Validate Registered Clubs</h1>
+
+        <div class="text-fields newfont">
+          <br>
+          <% @club.each do |club| %>
+              <p align="center">Name: <%= club.club_name %> - Number: <%= club.club_number %>
+
+                <%= link_to "Accept", "accept?id=" + club.id.to_s, class: "btn btn-success" %>
+                <%= link_to "Deny", "deny?id=" + club.id.to_s, class: "btn btn-danger" %></p>
+          <% end %>
+          <% if @club.count == 0 %>
+              <p align="center">There is no club need to be validated.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

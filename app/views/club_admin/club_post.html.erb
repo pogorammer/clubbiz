@@ -1,0 +1,23 @@
+<% provide(:title, @club.club_name + ' Management') %>
+<div id="content">
+  <div class="inner-content" id="myContent">
+    <div class="single-box">
+      <div class="project-post-content">
+        <%= render 'shared/ClubAdmin/club_admin_nav_bar' %>
+        <h1>Post Announcements</h1>
+        <%= render 'shared/ClubAdmin/club_update_success' %>
+        <div class="text-fields newfont">
+
+          <%= form_tag (club_admin_post_path) do %>
+              <span><i class="fa fa-paper-plane"></i></span>
+              <label for="post_content">Content</label>
+              <textarea id="post_content" class="form-control" maxlength="250" name="post_content" rows="5" required></textarea>
+              <br>
+
+              <p align="center"><%= submit_tag "Post", class: "btn btn-success btn-lg" %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

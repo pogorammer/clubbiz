@@ -1,0 +1,43 @@
+<% provide(:title, 'Home Page') %>
+<div id="content">
+<div class="portfolio-box" >
+  <% if @all_club.count > 0 %>
+      <% @all_club.each do |c| %>
+          <div class="project-post club">
+            <%= image_tag c.avatar %>
+            <div class="hover-box">
+              <div class="project-title">
+                <h2><%= c.club_name %></h2>
+                <span>Found: <%= c.created_at.to_time.strftime("%d/%m/%Y")%><Br></span>
+                <div><a href="/club/<%= c.id %>"><i class="fa fa-arrow-right"></i></a></div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+  <% else %>
+      <p class="newfont"></p>
+  <% end %>
+  <% if @events.count > 0 %>
+      <% @events.each do |e| %>
+          <%
+             club_id = e.club_events.order('club_events.created_at asc')[0].club_id
+             c = Club.find(club_id)
+          %>
+          <div class="project-post event">
+
+            <%= image_tag e.img1 %>
+            <div class="hover-box">
+              <div class="project-title">
+                <h2><%= e.title %></h2>
+                <h6 style="color: #ffffff"><%= e.datetime.to_time.strftime("%d/%m/%Y")%></h6>
+                <span>by <%= c.club_name %><Br></span>
+                <div><a href="/event/<%= e.id %>"><i class="fa fa-arrow-right"></i></a></div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+  <% else %>
+      <p class="newfont"></p>
+  <% end %>
+</div>
+    </div>

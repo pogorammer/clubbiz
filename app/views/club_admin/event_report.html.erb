@@ -1,0 +1,26 @@
+<% provide(:title, @club.club_name + ' Management') %>
+<div id="content">
+  <div class="inner-content" id="myContent">
+    <div class="single-box">
+      <div class="project-post-content">
+        <%= render 'shared/ClubAdmin/club_admin_nav_bar' %>
+        <h1>Events Report</h1>
+        <%= render 'shared/ClubAdmin/club_update_success' %>
+        <div class="text-fields newfont">
+        <% if @event.count == 0 %>
+        <br>
+        <p align="center"><%= "This club has not created any event." %></p>
+        <% else %>
+        <% @event.each do |e| %>
+            <%= link_to e.title, e,  style: "font-size: 20px; font-weight: bold; color: #c0392b; text-decoration: none"%>
+            <div class="rounded-box">
+            <p>Total Participants: <%= e.student_tickets.sum('amount') %> persons</p>
+            <p>Total Earned: <%= e.student_tickets.sum('paid') %>$</p>
+            </div>
+        <% end %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

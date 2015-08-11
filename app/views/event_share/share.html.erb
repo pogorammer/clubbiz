@@ -1,0 +1,38 @@
+<% provide(:title, 'Event Registration - Share Event') %>
+<div id="content">
+  <div class="inner-content" id="myContent">
+    <div class="single-box">
+      <div class="project-post-content">
+        <h1>Share Your Event</h1>
+
+        <div class="text-fields newfont">
+
+          <% if @share_club.count == 0 %>
+              <br>
+            <p align="center">The system could not find any other clubs to share.</p>
+              <p align="center"><%= link_to "Finish", @event,  class: 'btn btn-success btn-lg' %></p>
+              <% session[:event_id] = nil %>
+          <% else %>
+          <%= form_tag event_share_do_share_path do %>
+              <% i = 1 %>
+              <% @share_club.each do |c| %>
+
+                  <div class="rounded-box" style="margin-bottom: 10px">
+                    <p><%= image_tag c.avatar, class: "img-circular-small" %> <%= c.club_name %>
+                      <input id="club_<%= i%>" name="club_<%= i %>" type="checkbox" value="<%= c.id %>" style="float: right"/>
+                    </p>
+                  </div>
+                  <% i = i + 1 %>
+              <% end %>
+              <br>
+
+              <p align="center"><%= submit_tag 'Share', class: 'btn btn-success btn-lg' %></p>
+          <% end %>
+
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

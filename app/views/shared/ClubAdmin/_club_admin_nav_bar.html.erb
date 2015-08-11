@@ -1,0 +1,47 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header" style="font-family: 'Existence-Light', Arial, sans-serif;">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand">Club Management</span>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav">
+        <li
+        <% if params[:action] == "show" && params[:controller] == "club" %>class="active"
+        <% end %>>
+          <a href=<%= "/club/#{@club.id}" %>><b>Club's Profile</b></a></li>
+        <li
+        <% if params[:action] == "club_edit" %>class="active"
+        <% end %>>
+          <a href=<%= club_admin_club_edit_path %>><b>Update Details</b></a></li>
+        <li
+        <% if params[:action] == "club_post" %>class="active"
+        <% end %>>
+          <a href=<%= club_admin_club_post_path %>><b>Post Announcement</b></a></li>
+
+        <li
+        <% if params[:controller] == "event" %>class="active"
+        <% end %>>
+          <a href=<%= new_event_path %>><b>Create Event</b></a></li>
+
+        <li
+        <% if params[:action] == "event_report" %>class="active"
+        <% end %>>
+          <a href=<%= club_admin_event_report_path %>><b>Event's Report</b></a></li>
+
+
+      </ul>
+      <a class="btn btn-danger navbar-btn pull-right" href=<%= club_admin_logout_path %>>Sign Out</a>
+
+    </div>
+
+  </div>
+
+</nav>
+<div><%= render 'shared/ClubAdmin/club_announcement' %></div>

@@ -1,0 +1,21 @@
+<% provide(:title, 'Administration - Post Announcements') %>
+<div id="content">
+  <div class="inner-content" id="myContent">
+    <div class="single-box">
+      <div class="project-post-content">
+        <%= render 'shared/Admin/admin_nav_bar' %>
+        <h1>Post announcements to all clubs</h1>
+        <%= render 'shared/ClubAdmin/club_update_success' %>
+        <div class="text-fields newfont">
+          <%= form_tag (admin_do_post_path) do %>
+              <span><i class="fa fa-paper-plane"></i></span>
+              <label for="announcement">Content</label>
+              <textarea id="announcement" class="form-control" maxlength="250" name="announcement" rows="5" required></textarea>
+              <br>
+              <p align="center"><%= submit_tag "Post", class: "btn btn-success btn-lg" %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

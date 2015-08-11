@@ -1,0 +1,73 @@
+<% provide(:title, 'Event Registration') %>
+<div id="content">
+  <div class="inner-content" id="myContent">
+    <div class="single-box">
+      <div class="project-post-content">
+        <%= render 'shared/ClubAdmin/club_admin_nav_bar' %>
+        <h1>Create an Event</h1>
+        <%= render 'shared/Event/event_reg_error_messages' %>
+        <div class="text-fields newfont">
+          <%= form_for @event, url: {action: "create"}, html: {multipart: true} do |f| %>
+              <div id="inputWrapper" class="newfont">
+                <h4><strong>Event Info</strong></h4>
+
+                <div class="rounded-box newfont">
+                  <span><i class="fa fa-file-text"></i></span> <%= f.label :title, "Event Title" %>
+                  <%= f.text_field :title, class: "form-control", required: '' %>
+
+                  <span><i class="fa fa-calendar"></i></span><%= label_tag :datetime, "Date Time" %>
+                  <input class="form-control " id="event_datetime" name="event[datetime]" data-field="datetime" required="required"/>
+
+                  <div class="dtBox"></div>
+                  <span><i class="fa fa-image"></i></span><%= label_tag :img1, "First Image" %>
+                  <%= f.file_field :img1, class: "form-control", required: '' %>
+
+                  <span><i class="fa fa-image"></i></span><%= label_tag :img2, "Second Image" %>
+                  <%= f.file_field :img2, class: "form-control", required: '' %>
+
+                  <span><i class="fa fa-image"></i></span><%= label_tag :img3, "Third Image" %>
+                  <%= f.file_field :img3, class: "form-control", required: '' %>
+
+                  <span><i class="fa fa-file-text"></i></span><%= label_tag :description, "Description" %>
+                  <%= f.text_area :description, class: "form-control", maxlength: "250", rows: "5", required: '' %>
+
+                  <span><i class="fa fa-share"></i></span><%= label_tag :share_event, "Share this event?" %>
+                  <input id="share_event" name="share_event" type="checkbox"/>
+                </div>
+                <h4><strong>Ticket 1</strong></h4>
+
+                <div class="rounded-box newfont">
+                  <span><i class="fa fa-ticket"></i></span><%= label_tag :ticket_1_type, "Type" %>
+                  <%= text_field_tag :ticket_1_type, nil, class: "form-control", required: '' %>
+
+                  <span><i class="fa fa-sort-numeric-asc"></i></span><%= label_tag :ticket_1_price, "Price" %>
+                  <%= text_field_tag :ticket_1_price, nil, class: "form-control", required: '', type: "number" %>
+
+                  <span><i class="fa fa-sort-numeric-asc"></i></span><%= label_tag :ticket_1_amount, "Amount" %>
+                  <%= text_field_tag :ticket_1_amount, nil, class: "form-control", required: '', type: "number" %>
+
+                  <span><i class="fa fa-calendar"></i></span><%= label_tag :ticket_1_start_date, "Start Date" %>
+                  <input class="form-control" id="ticket_1_start_date" name="ticket_1_start_date" data-field="datetime" required="required"/>
+
+                  <div class="dtBox"></div>
+
+                  <span><i class="fa fa-calendar"></i></span><%= label_tag :ticket_1_end_date, "End Date" %>
+                  <input class="form-control" id="ticket_1_end_date" name="ticket_1_end_date" data-field="datetime" required="required"/>
+
+                  <div class="dtBox"></div>
+
+                </div>
+
+              </div>
+              <br>
+
+              <p align="right"><a href="#" id="addMoreTicket" class="btn btn-info">
+                <i class="fa fa-plus-square"> Add More Tickets</i></a></p>
+
+              <p align="center"> <%= submit_tag "Create new Event", class: "btn btn-warning btn-lg" %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

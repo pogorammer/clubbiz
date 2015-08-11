@@ -1,0 +1,32 @@
+<% provide(:title, 'Reserve Ticket for ' + @event.title) %>
+<div id="content">
+  <div class="inner-content" id="myContent">
+    <div class="single-box">
+      <div class="project-post-content">
+        <h1>Reserve Ticket for <%= @event.title %></h1>
+        <div class="text-fields newfont">
+          <%= form_tag reserve_ticket_do_reserve_path do %>
+              <% i = 1 %>
+          <% @ticket.each do |t| %>
+              <h4 style="color: #c0392b; font-weight: bold"><%= t.ticket_type %> (<%= t.amount %> left)</h4>
+              <div class="rounded-box" style="margin-bottom: 10px">
+                <p><b>Avalability:</b> <%= t.start_date.to_time.strftime("%d/%m/%Y %I:%M%p") %> - <%= t.end_date.to_time.strftime("%d/%m/%Y %I:%M%p") %> <br>
+                  <b>Price:</b> <%= t.ticket_price %>$ <br>
+                  <%= label_tag "Purchase Amount" %>
+                  <input id="ticket_<%= i %>"  class="form-control" name="ticket_<%= i %>" required="required" type="number" value="0" min="0" max="<%= if t.amount > 4
+                                                                                                                                                          4
+                                                                                                                                                        else
+                                                                                                                                                          t.amount end %>"/>
+                  <input id="ticket_<%= i %>_id" name="ticket_<%= i %>_id" type="hidden" value="<%= t.id %>"/>
+                </p>
+              </div>
+                  <% i += 1 %>
+              <% end %><br>
+              <p align="center"> <%= submit_tag "Reserve", class: "btn btn-warning btn-lg" %></p>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

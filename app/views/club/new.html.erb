@@ -1,0 +1,90 @@
+<% provide(:title, 'Club Registration') %>
+<div id="content">
+  <div class="inner-content" id="myContent">
+    <div class="single-box">
+      <div class="project-post-content">
+        <h1>Create your Club</h1>
+        <%= render 'shared/Club/club_reg_error_messages' %>
+        <div class="text-fields newfont">
+          <%= form_for @club, url: {action: "create"}, html: {multipart: true} do |f| %>
+              <div id="inputWrapper" class="newfont">
+                <h4><strong>Club Info</strong></h4>
+
+                <div class="rounded-box newfont">
+                  <span><i class="fa fa-group"></i></span> <%= f.label :club_name, "Club Name" %>
+                  <%= f.text_field :club_name, class: "form-control", required: '' %>
+
+                  <span><i class="fa fa-barcode"></i></span><%= label_tag :club_number, "Club Registration No" %>
+                  <%= f.text_field :club_number, class: "form-control", type: "number", required: '' %>
+
+                  <span><i class="fa fa-globe"></i></span><%= label_tag :url, "Club Website" %>
+                  <%= f.text_field :url, class: "form-control" %>
+
+                  <span><i class="fa fa-image"></i></span><%= label_tag :avatar, "Club Avatar" %>
+                  <%= f.file_field :avatar, class: "form-control" %>
+
+                  <span><i class="fa fa-user"></i></span> <%= label_tag :club_login, "Club Login ID" %>
+                  <%= f.text_field :club_login, class: "form-control", required: '' %>
+
+                  <span><i class="fa fa-lock"></i></span><%= label_tag :password, "Password" %>
+                  <%= f.password_field :password, class: "form-control", required: '' %>
+
+                  <span><i class="fa fa-lock"></i></span> <%= label_tag :password_confirmation, "Password Confirmation" %>
+                  <%= f.password_field :password_confirmation, class: "form-control", required: '' %>
+                </div>
+                <h4><strong>President</strong></h4>
+
+                <div class="rounded-box newfont">
+                  <span><i class="fa fa-user"></i></span><%= label_tag :bearer_1_name, "Name" %>
+                  <%= text_field_tag :bearer_1_name, nil, class: "form-control", required: '' %>
+
+                  <span><i class="fa fa-phone"></i></span><%= label_tag :bearer_1_phone, "Phone" %>
+                  <%= phone_field_tag :bearer_1_phone, nil, class: "form-control", required: '' %>
+
+                  <span><i class="fa fa-envelope"></i></span><%= label_tag :bearer_1_email, "University Email" %>
+                  <%= text_field_tag :bearer_1_email, nil, class: "form-control", type: "email", required: '' %>
+
+                  <span><i class="fa fa-share-alt"></i></span><%= label_tag :bearer_1_position, "Position" %>
+                  <%= select_tag "bearer_1_position",
+                                 "<option>President</option>".html_safe,
+                                 class: "form-control" %>
+
+                  <span><i class="fa fa-university"></i></span><%= label_tag :bearer_1_admin, "Is Administrator?" %>
+                  <%= check_box_tag :bearer_1_admin, nil, class: "form-control" %>
+
+                </div>
+
+                <h4><strong>Treasurer</strong></h4>
+
+                <div class="rounded-box newfont">
+                  <span><i class="fa fa-user"></i></span><%= label_tag :bearer_2_name, "Name" %>
+                  <%= text_field_tag :bearer_2_name, nil, class: "form-control", required: '' %>
+
+                  <span><i class="fa fa-phone"></i></span><%= label_tag :bearer_2_phone, "Phone" %>
+                  <%= phone_field_tag :bearer_2_phone, nil, class: "form-control", required: '' %>
+
+                  <span><i class="fa fa-envelope"></i></span><%= label_tag :bearer_2_email, "University Email" %>
+                  <%= text_field_tag :bearer_2_email, nil, class: "form-control", type: 'email', required: '' %>
+
+                  <span><i class="fa fa-share-alt"></i></span><%= label_tag :bearer_2_position, "Position" %>
+                  <%= select_tag "bearer_2_position",
+                                 "<option>Treasurer</option>".html_safe,
+                                 class: "form-control" %>
+
+                  <span><i class="fa fa-university"></i></span><%= label_tag :bearer_2_admin, "Is Administrator?" %>
+                  <input id="bearer_2_admin" name="bearer_2_admin" type="checkbox"/>
+
+                </div>
+              </div>
+              <br>
+
+              <p align="right"><a href="#" id="addMoreInput" class="btn btn-info">
+                <i class="fa fa-plus-square"> Add More Bearers</i></a></p>
+
+              <p align="center"> <%= submit_tag "Create new Club", class: "btn btn-warning btn-lg" %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

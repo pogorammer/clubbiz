@@ -1,0 +1,39 @@
+<% provide(:title, "Student Sign Up") %>
+<div id="content">
+  <div class="inner-content">
+    <div class="padding-box">
+      <div class="single-box">
+        <div class="project-post-content">
+          <h1>Join Clubbiz Today</h1>
+          <%= render 'shared/Student/student_error_messages' %>
+          <div class="text-fields newfont">
+
+            <%= form_for @student, html: {multipart: true} do |f| %>
+                <span><i class="fa fa-user"></i></span><%= f.label :first_name, "First Name" %>
+                <%= f.text_field :first_name, class: "form-control" %>
+
+                <span><i class="fa fa-user"></i></span> <%= f.label :last_name, "Last Name" %>
+                <%= f.text_field :last_name, class: "form-control", required: '' %>
+
+                <span><i class="fa fa-envelope"> </i></span> <%= f.label :email %>
+                <%= f.text_field :email, class: "form-control", type: 'email', required: '' %>
+
+                <span><i class="fa fa-image"></i></span><%= label_tag :avatar, "Avatar" %>
+                <%= f.file_field :avatar, class: "form-control" %>
+
+                <span><i class="fa fa-lock"></i></span> <%= f.label :password %>
+                <%= f.password_field :password, class: "form-control", required: '' %>
+
+                <span> <i class="fa fa-lock"></i></span> <%= f.label :password_confirmation, "Confirmation" %>
+                <%= f.password_field :password_confirmation, class: "form-control", required: '' %>
+
+
+                <p align="center"><%= f.submit "Create My Account", class: "btn btn-success btn-lg" %></p>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

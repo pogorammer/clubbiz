@@ -1,0 +1,39 @@
+<% provide(:title, @club.club_name + ' Management') %>
+<div id="content">
+  <div class="inner-content" id="myContent">
+    <div class="single-box">
+      <div class="project-post-content">
+        <%= render 'shared/ClubAdmin/club_admin_nav_bar' %>
+        <h1>Update <%= @club.club_name %>'s details</h1>
+        <%= render 'shared/Club/club_reg_error_messages' %>
+        <%= render 'shared/ClubAdmin/club_update_success' %>
+        <div class="text-fields newfont">
+          <%= form_for @club, html: {multipart: true} do |f| %>
+              <span><i class="fa fa-group"></i></span> <%= f.label :club_name, "Club Name" %>
+              <%= f.text_field :club_name, class: "form-control" %>
+
+              <span><i class="fa fa-barcode"></i></span><%= label_tag :club_number, "Club Registration No" %>
+              <%= f.text_field :club_number, class: "form-control" %>
+
+              <span><i class="fa fa-globe"></i></span><%= label_tag :url, "Club Website" %>
+              <%= f.text_field :url, class: "form-control" %>
+
+              <span><i class="fa fa-image"></i></span><%= label_tag :avatar, "Club Avatar" %>
+              <%= f.file_field :avatar, class: "form-control" %>
+
+              <span><i class="fa fa-user"></i></span> <%= label_tag :club_login, "Club Login ID" %>
+              <%= f.text_field :club_login, class: "form-control" %>
+
+              <span><i class="fa fa-lock"></i></span><%= label_tag :password, "Password" %>
+              <%= f.password_field :password, class: "form-control" %>
+
+              <span><i class="fa fa-lock"></i></span> <%= label_tag :password_confirmation, "Password Confirmation" %>
+              <%= f.password_field :password_confirmation, class: "form-control" %>
+
+              <p align="center"> <%= submit_tag "Update", class: "btn btn-warning btn-lg" %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

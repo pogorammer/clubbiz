@@ -1,0 +1,21 @@
+<% if !@login_error.nil? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger newfont">
+        Wrong Login ID or Password.
+      </div>
+    </div>
+<% end %>
+<% if !@club_not_valid.nil? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger newfont">
+        Your club is not valid and is not able to function in this website.
+      </div>
+    </div>
+<% end %>
+<% if !@club_not_validated.nil? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger newfont">
+        Your club is not yet validated by the administrator. Please wait.
+      </div>
+    </div>
+<% end %>

@@ -1,0 +1,41 @@
+<% provide(:title, 'Search') %>
+<div id="content">
+  <div class="inner-content">
+    <div class="single-box">
+        <div class="project-post-content">
+          <div class="text-fields newfont">
+            <h1 align="center">Club Returned</h1>
+          <% if @search_club.count > 0 %>
+            <% @search_club.each do |c| %>
+              <div class="rounded-box">
+              <a href="/club/<%= c.id %>" style="text-decoration: none">
+                <p><%= image_tag c.avatar, class: 'img-circular-small' %> <%= c.club_name %></p></a>
+              </div><br>
+            <% end %>
+          <% else %>
+              <div class="rounded-box">
+                <p>No such club found for this query</p>
+              </div>
+          <% end %>
+
+            <h1 align="center">Event Returned</h1>
+            <% if @search_event.count > 0 %>
+
+                <% @search_event.each do |e| %>
+                    <div class="rounded-box">
+                      <a href="/event/<%= e.id %>" style="text-decoration: none">
+                      <p><%= image_tag e.img1, class: 'img-circular-small' %> <%= e.title %></p>
+                          </a>
+                    </div><br>
+                <% end %>
+            <% else %>
+                <div class="rounded-box">
+                  <p>No such club found for this query</p>
+                </div>
+                <br>
+            <% end %>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,84 @@
+<% provide(:title, @club.club_name) %>
+<div id="content">
+  <div class="inner-content">
+    <div class="single-box">
+
+      <% if club_signed_in? && session[:club_id] == @club.id%>
+          <div class="project-post-content">
+            <%= render 'shared/ClubAdmin/club_admin_nav_bar' %>
+          </div>
+      <% end %>
+
+      <div class="single-box-content">
+
+        <div class="project-post-content newfont">
+
+          <h1 style="font-size: 30px; color: #d35400; font-weight: bold"><%= @club.club_name %></h1>
+
+          <div><%= image_tag @club.avatar, class: "img-circular" %></div>
+          <br>
+
+          <div class="post-info">
+            <ul>
+              <li>
+                <span><i class="fa fa-calendar"></i></span>Found
+                Date: <%= @club.created_at.to_time.strftime("%d/%m/%Y") %>
+              </li>
+              <li>
+                <span><i class="fa fa-link"></i></span>Website: <%= if @club.url != ""
+              @club.url else "No Website" end%>
+              </li>
+              <li>
+                <span><i class="fa fa-user"></i></span>President: <%= @club.bearers.where(position: 'President').take.name %>
+              </li>
+              <li>
+                <span><i class="fa fa-phone"></i></span>Contact Number: <%= @club.bearers.where(position: 'President').take.phone %>
+              </li>
+              <li>
+                <span><i class="fa fa-envelope"></i></span>Email: <%= @club.bearers.where(position: 'President').take.email %>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <div class="post-info">
+          <h1>Announcements</h1>
+          <blockquote class="example-twitter">
+            <% if @club.club_posts.count != 0 %>
+                <%= @club.club_posts.last.post %>
+
+            <% else %>
+                No announcement.
+            <% end %>
+          </blockquote>
+
+        </div>
+        <h1>Events</h1>
+
+        <div class="portfolio-box" >
+          <% if @events.count > 0 %>
+              <% @events.each do |e| %>
+        <div class="project-post photography" style="margin: 10px">
+
+          <%= image_tag e.img1 %>
+          <div class="hover-box">
+            <div class="project-title">
+              <h2><%= e.title %></h2>
+              <h6 style="color: #ffffff"><%= e.datetime.to_time.strftime("%d/%m/%Y")%></h6>
+              <span>by <%= @club.club_name %></span>
+              <div><a href="/event/<%= e.id %>"><i class="fa fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+          <% end %>
+          <% else %>
+          <p class="newfont">There is currently no event hold by this club.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
